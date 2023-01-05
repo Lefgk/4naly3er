@@ -135,6 +135,7 @@ const compileAndBuildAST = async (basePath: string, fileNames: string[]): Promis
           basePath,
         ).then(output => {
           for (const f of filteredSources) {
+            console.log(output);
             if (!output.sources[f.file]?.ast) {
               console.log(`Cannot compile AST for ${f.file}`);
             }
@@ -144,6 +145,7 @@ const compileAndBuildAST = async (basePath: string, fileNames: string[]): Promis
       );
     }
   }
+  // console.log(promises);
   await Promise.all(promises);
   return sources.map(f => f.ast!);
 };
